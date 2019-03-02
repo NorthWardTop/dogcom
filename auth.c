@@ -79,6 +79,11 @@ int dhcp_challenge(int sockfd, struct sockaddr_in addr, unsigned char seed[]) {
     return 0;
 }
 
+/**
+ * @description: dhcp模式登录验证
+ * @param {sock句柄,地址,} 
+ * @return: 
+ */
 int dhcp_login(int sockfd, struct sockaddr_in addr, unsigned char seed[], unsigned char auth_information[], int try_JLUversion) {
     unsigned int login_packet_size;
     unsigned int length_padding = 0;

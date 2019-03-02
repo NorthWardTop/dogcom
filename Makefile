@@ -1,5 +1,5 @@
-CC     = gcc
-TARGET = dogcom
+CC     = mipsel-openwrt-linux-gcc
+TARGET = my-dogcom
 INSTALL_DIR = /usr/bin/
 
 ifeq ($(debug), y)
