@@ -20,6 +20,7 @@ int try_smart_eaplogin(void);
 static const char default_bind_ip[20] = "0.0.0.0";
 
 int main(int argc, char *argv[]) {
+    //没输入参数打印帮助文档
     if (argc == 1) {
         print_help(1);
     }

@@ -1,4 +1,5 @@
-CC     = mipsel-openwrt-linux-gcc
+# CC     = mipsel-openwrt-linux-gcc
+CC = gcc
 TARGET = my-dogcom
 INSTALL_DIR = /usr/bin/
 
