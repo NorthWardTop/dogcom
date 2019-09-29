@@ -28,17 +28,20 @@ int main(int argc, char *argv[]) {
     char *file_path;
 
     while (1) {
+        //初始化一个选项集合, option在getopt.h已定义
         static const struct option long_options[] = {
+            //name, has_arg, flag, val
             {"mode", required_argument, 0, 'm'},
             {"conf", required_argument, 0, 'c'},
             {"bindip", required_argument, 0, 'b'},
-            {"log", required_argument, 0, 'l'},
+            {"log", required_argument, 0, 'l'}, //指定日志文件
 #ifdef linux
+            //Linux可守护运行, 使用802.1x
             {"daemon", no_argument, 0, 'd'},
             {"802.1x", no_argument, 0, 'x'},
 #endif
-            {"eternal", no_argument, 0, 'e'},
-            {"verbose", no_argument, 0, 'v'},
+            {"eternal", no_argument, 0, 'e'}, //永恒运行
+            {"verbose", no_argument, 0, 'v'}, //
             {"help", no_argument, 0, 'h'},
             {0, 0, 0, 0}};
 
@@ -53,6 +56,7 @@ int main(int argc, char *argv[]) {
         if (c == -1) {
             break;
         }
+        //每轮循环解析一个选项和参数
         switch (c) {
             case 'm':
                 if (strcmp(optarg, "dhcp") == 0) {
@@ -70,7 +74,7 @@ int main(int argc, char *argv[]) {
 #endif
 #ifdef linux
                     char path_c[PATH_MAX];
-                    realpath(optarg, path_c);
+                    realpath(optarg, path_c); //确定完整路径
                     file_path = strdup(path_c);
 #else
                 file_path = optarg;
@@ -121,7 +125,7 @@ int main(int argc, char *argv[]) {
             default:
                 break;
         }
-    }
+    } // while(1)
 
 #ifndef __APPLE__
     if (mode != NULL && file_path != NULL) {
